@@ -3,9 +3,9 @@ spring:
     name: ncapas-parcial-ii
 
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/magic_wand
+    username: dev_pilito
+    password: root123
 
   jpa:
     show-sql: false
