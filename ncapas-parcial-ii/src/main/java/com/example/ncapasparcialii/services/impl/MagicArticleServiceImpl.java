@@ -34,6 +34,10 @@ public class MagicArticleServiceImpl implements MagicArticleService {
         MagicProvider magicProvider = magicProviderRepository.findById(request.getProviderId())
                 .orElseThrow(() -> new BusinessRuleException("A provider is required to create an article"));
 
+        if (request.getType() != magicProvider.getType()) {
+            throw new BusinessRuleException("The article type is required to be the same as provider type");
+        }
+
         MagicArticle magicArticle = MagicArticle.builder()
                 .name(request.getName())
                 .type(request.getType())
@@ -77,6 +81,10 @@ public class MagicArticleServiceImpl implements MagicArticleService {
 
         MagicProvider magicProvider = magicProviderRepository.findById(request.getProviderId())
                 .orElseThrow(() -> new BusinessRuleException("A provider is required to update an article"));
+
+        if (request.getType() != magicProvider.getType()) {
+            throw new BusinessRuleException("The article type is required to be the same as provider type");
+        }
 
         magicArticle.setName(request.getName());
         magicArticle.setType(request.getType());
